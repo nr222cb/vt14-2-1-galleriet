@@ -31,6 +31,7 @@
                 <asp:FileUpload ID="FileUpload1" runat="server" />
                 <asp:Button ID="UploadButton" runat="server" Text="Ladda upp" OnClick="UploadButton_Click" />
             </asp:Panel>
+            <asp:Literal ID="Literal1" runat="server" Visible="false"></asp:Literal>
         </asp:Panel>    
     </div>
     </form>
