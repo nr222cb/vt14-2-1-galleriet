@@ -11,8 +11,6 @@
     <div>
         <asp:Panel ID="ViewPanel" runat="server">
             <h1>Galleriet</h1>
-            <%-- Errors --%>
-
             <%-- MainImage --%>
             <asp:Image ID="MainImage" runat="server" Visible="false" />
             <%-- Thumbnails --%>
@@ -26,12 +24,26 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </asp:Panel>
-            <%-- Upload --%>
             <asp:Panel ID="UploadPanel" runat="server">
-                <asp:FileUpload ID="FileUpload1" runat="server" />
-                <asp:Button ID="UploadButton" runat="server" Text="Ladda upp" OnClick="UploadButton_Click" />
+                <fieldset>
+                    <legend>Ladda upp bild:</legend>
+                    <%-- Messages --%>
+                    <p>
+                        <asp:Literal ID="Literal1" runat="server" Visible="false"></asp:Literal>
+                    </p>
+                    <asp:ValidationSummary ID="ValidationSummary" runat="server" HeaderText="Fel inträffade. Korrigera felet och försök igen!" />
+                    <%-- Upload --%>
+                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                    <asp:Button ID="UploadButton" runat="server" Text="Ladda upp" OnClick="UploadButton_Click" />
+                </fieldset>
             </asp:Panel>
-            <asp:Literal ID="Literal1" runat="server" Visible="false"></asp:Literal>
+            <%-- Validation --%>
+            <asp:RequiredFieldValidator Visible="True" ID="RequiredFieldValidator1" runat="server" Text="*" 
+                ErrorMessage="En fil måste väljas." 
+                ControlToValidate="FileUpload1" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator Visible="True" ID="RegularExpressionValidator1" runat="server" Text="*" 
+                ErrorMessage="Endast bilder av typen gif|jpg|png är tillåtna." ControlToValidate="FileUpload1" Display="Dynamic" 
+                ValidationExpression="^.*\.(gif|jpg|png)$" SetFocusOnError="True"></asp:RegularExpressionValidator>
         </asp:Panel>    
     </div>
     </form>
