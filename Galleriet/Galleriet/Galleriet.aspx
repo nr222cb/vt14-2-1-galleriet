@@ -14,14 +14,22 @@
             <%-- Errors --%>
 
             <%-- MainImage --%>
-            <asp:Image ID="MainImage" runat="server" />
+            <asp:Image ID="MainImage" runat="server" Visible="false" />
             <%-- Thumbnails --%>
             <asp:Panel ID="ThumbnailPanel" runat="server">
-                <asp:Repeater ID="Repeater1" runat="server"></asp:Repeater>
+                <asp:Repeater ID="Repeater1" runat="server" ItemType="System.String" SelectMethod="Repeater1_GetData">
+                    <ItemTemplate>
+                        <asp:HyperLink ID="HyperLink1" runat="server" 
+                            Text='<%#: Item%>' ImageUrl='<%#"~/Content/Images/Thumbnails/"+Item %>' 
+                            NavigateUrl='<%# "?name=" + Item%>'>
+                        </asp:HyperLink>
+                    </ItemTemplate>
+                </asp:Repeater>
             </asp:Panel>
             <%-- Upload --%>
             <asp:Panel ID="UploadPanel" runat="server">
                 <asp:FileUpload ID="FileUpload1" runat="server" />
+                <asp:Button ID="UploadButton" runat="server" Text="Ladda upp" OnClick="UploadButton_Click" />
             </asp:Panel>
         </asp:Panel>    
     </div>

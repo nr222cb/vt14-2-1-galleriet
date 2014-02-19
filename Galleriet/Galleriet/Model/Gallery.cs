@@ -48,7 +48,7 @@ namespace Galleriet.Model
                 || image.RawFormat.Guid == ImageFormat.Jpeg.Guid;
         }
 
-        public static string SaveImage(Stream stream, string fileName)
+        public string SaveImage(Stream stream, string fileName)
         {
             var image = Image.FromStream(stream);
             fileName = SanitizePath.Replace(fileName, String.Empty);
@@ -59,15 +59,20 @@ namespace Galleriet.Model
             }
 
             int i = 2;
+            // regex för att detektera tidigare namndubletter
+            var sameName = new Regex("(\\([^\\)]+\\))");
             while (ImageExists(fileName))
             {
-                fileName = String.Format("{0}{1}{2}{3}{4}", Path.GetFileNameWithoutExtension(fileName), "(", i, ")", Path.GetExtension(fileName));
-                i++;
+                fileName = sameName.Replace(fileName, "");
+                fileName = String.Format("{0}{1}{2}{3}{4}", Path.GetFileNameWithoutExtension(fileName), "(", i++, ")", Path.GetExtension(fileName));
             }
 
             try
             {
                 image.Save(Path.Combine(PhysicalUploadedImagesPath, fileName));
+
+                var thumbnail = image.GetThumbnailImage(60, 32, null, System.IntPtr.Zero);
+                thumbnail.Save(PhysicalUploadedImagesPath + @"\Thumbnails\" + fileName);
             }
             catch (Exception)
             {
