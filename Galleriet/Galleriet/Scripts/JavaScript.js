@@ -1,4 +1,9 @@
-﻿function GetQueryStringParams(sParam) {
+﻿$(document).ready(function () {
+    var name = GetQueryStringParams('name');
+    $("img[alt='" + name + "']").addClass("aktuell");
+});
+
+function GetQueryStringParams(sParam) {
     var sPageURL = window.location.search.substring(1);
     var sURLVariables = sPageURL.split('&');
     for (var i = 0; i < sURLVariables.length; i++) {
@@ -8,21 +13,3 @@
         }
     }
 };
-
-
-$( document ).ready(function() {
-    //$("#ThumbnailPanel a.border").removeClass("border");
-    var name = GetQueryStringParams('name');
-    //alert(name);
-    $("img").addClass("active");
-    //alert($("#ThumbnailPanel a img").length);
-
-    var images = document.getElementsByTagName("img");
-    //alert(images.length);
-    var i;
-
-    for (i = 0; i < images.length; i++) {
-        images[i].className += "active";
-    }
-
-})

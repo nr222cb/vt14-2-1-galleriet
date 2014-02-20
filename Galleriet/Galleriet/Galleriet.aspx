@@ -19,8 +19,8 @@
                 <asp:Repeater ID="Repeater1" runat="server" ItemType="System.String" SelectMethod="Repeater1_GetData">
                     <ItemTemplate>
                         <asp:HyperLink ID="HyperLink1" runat="server" 
-                            Text='<%#: Item%>' ImageUrl='<%#"~/Content/Images/Thumbnails/"+Item %>' 
-                            NavigateUrl='<%# "?name=" + Item%>'>
+                            Text='<%#: Item%>' ImageUrl='<%#"~/Content/Images/Thumbnails/"+Item %>'
+                            NavigateUrl='<%# "?name=" + Item%>' CssClass="">
                         </asp:HyperLink>
                     </ItemTemplate>
                 </asp:Repeater>
