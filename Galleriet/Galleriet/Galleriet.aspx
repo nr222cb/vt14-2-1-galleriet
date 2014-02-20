@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="sv">
 <head runat="server">
     <title>Galleriet</title>
+     <link rel="stylesheet" href="Content/MyStyleSheet.css"/>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -29,6 +30,7 @@
                     <legend>Ladda upp bild:</legend>
                     <%-- Messages --%>
                     <p>
+                        <asp:Label id="Label2" font-names="Verdana" ForeColor="Green" font-size="10pt" runat="server"/>
                         <asp:Literal ID="Literal1" runat="server" Visible="false"></asp:Literal>
                     </p>
                     <asp:ValidationSummary ID="ValidationSummary" runat="server" HeaderText="Fel inträffade. Korrigera felet och försök igen!" />
@@ -47,5 +49,7 @@
         </asp:Panel>    
     </div>
     </form>
+    <script src="/Scripts/jquery-2.1.0.js" type="text/javascript"></script>
+    <script src="/Scripts/JavaScript.js" type="text/javascript"></script>
 </body>
 </html>
